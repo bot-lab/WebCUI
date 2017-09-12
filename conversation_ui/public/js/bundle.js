@@ -26998,10 +26998,10 @@ var _Conversation2 = _interopRequireDefault(_Conversation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//テーマ
+//テーマのcss
 var theme = {
 	blobColor: 'cyan',
-	userBlobColor: 'deeppink',
+	userBlobColor: 'gray',
 	user: '👀',
 	bot: '😾',
 	baseColor: '#ccc',
@@ -27010,7 +27010,8 @@ var theme = {
 	width: '500px'
 };
 
-//質問
+//質問の配列
+//テキストとそのキー。ボタンも格納しておく
 var questions = [{
 	text: 'Hello!'
 }, {
@@ -27035,7 +27036,7 @@ var questions = [{
 }, {
 	text: 'Do you like this image?',
 	key: 'imageLike',
-	image: 'https://unsplash.it/400/300/?random',
+	image: 'https://unsplash.it/400/300/?random', //ランダムに画像を選出
 	buttons: [{
 		text: 'Yes, looks great!',
 		value: 'yes'
@@ -27130,10 +27131,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Conversation UI
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-//Appコンポーネントを継承している？
 var Conversation = function (_Component) {
   _inherits(Conversation, _Component);
 
+  //App.jsからpropsを取ってきて、初期データの作成
   function Conversation(props) {
     _classCallCheck(this, Conversation);
 
@@ -27142,22 +27143,21 @@ var Conversation = function (_Component) {
     (0, _autoBind2.default)(_this);
     _this.state = {
       questions: props.questions.map(function (question) {
-        //
         return _extends({}, question, { //スプレッド演算子
           sender: 'BOT'
         });
       }),
       questionNumber: 0,
       userInput: '',
-      disableUserInput: false,
+      disableUserInput: false, //入力させない。
       messages: [],
       answers: {},
-      loadingBot: false
+      loadingBot: false //これは何か？
     };
     return _this;
   }
 
-  //コンポ年とがページに追加される直前に呼びだされる
+  //コンポーネントがページに追加される直前に呼びだされる
   //この中でsetStateするとrender時にまとめて行われる。
   //ここの場合は、messagesにquestions配列の中身を入れている
 
@@ -27199,7 +27199,7 @@ var Conversation = function (_Component) {
 
       this.setState({
         messages: [].concat(_toConsumableArray(this.state.messages), [{
-          text: select.text,
+          text: select.text, //不明
           type: 'USER'
         }]),
         answers: this.state.questions[this.state.questionNumber].key ? _extends({}, this.state.answers, _defineProperty({}, this.state.questions[this.state.questionNumber].key, select.value)) : _extends({}, this.state.answers)

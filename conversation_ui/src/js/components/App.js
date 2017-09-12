@@ -1,10 +1,10 @@
 import React from 'react';
 import Conversation from '../containers/Conversation';
 
-//テーマ
+//テーマのcss
 const theme = {
   blobColor: 'cyan',
-  userBlobColor: 'deeppink',
+  userBlobColor: 'gray',
   user: '👀',
   bot: '😾',
   baseColor: '#ccc',
@@ -13,7 +13,8 @@ const theme = {
   width: '500px',
 };
 
-//質問
+//質問の配列
+//テキストとそのキー。ボタンも格納しておく
 const questions = [{
 	text: 'Hello!',
   }, {
@@ -38,7 +39,7 @@ const questions = [{
   }, {
 	text: 'Do you like this image?',
 	key: 'imageLike',
-	image: 'https://unsplash.it/400/300/?random',
+	image: 'https://unsplash.it/400/300/?random', //ランダムに画像を選出
 	buttons: [{
 	  text: 'Yes, looks great!',
 	  value: 'yes',

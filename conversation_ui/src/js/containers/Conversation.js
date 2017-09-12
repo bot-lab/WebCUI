@@ -14,13 +14,16 @@ import MessageArea from '../primitives/MessageArea';
 import Loading from '../components/Loading';
 import SubmitButton from '../primitives/SubmitButton';
 
-//Appコンポーネントを継承している？
+
 class Conversation extends Component {
+  
+  
+  //App.jsからpropsを取ってきて、初期データの作成
   constructor(props) {
     super(props);
     autoBind(this);
     this.state = {
-      questions: props.questions.map(question => { //
+      questions: props.questions.map(question => {
         return {
           ...question, //スプレッド演算子
           sender: 'BOT',
@@ -28,14 +31,14 @@ class Conversation extends Component {
       }),
       questionNumber: 0,
       userInput: '',
-      disableUserInput: false,
+      disableUserInput: false, //入力させない。
       messages: [],
       answers: {},
-      loadingBot: false,
+      loadingBot: false, //これは何か？
     };
   }
 
-//コンポ年とがページに追加される直前に呼びだされる
+//コンポーネントがページに追加される直前に呼びだされる
 //この中でsetStateするとrender時にまとめて行われる。
 //ここの場合は、messagesにquestions配列の中身を入れている
   componentWillMount() {
@@ -66,7 +69,7 @@ class Conversation extends Component {
       messages: [
         ...this.state.messages,
         {
-          text: select.text,
+          text: select.text, //不明
           type: 'USER'
         }
       ],
